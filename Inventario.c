@@ -108,9 +108,14 @@ void devolverLibro(Libro libros[], int contador, int id) {
 }
 void eliminarLibro(Libro libros[], int *contador, int id) {
     int indice = buscarLibroPorID(libros, *contador, id);
-    if (indice == -1) {
+    if (indice == -1 ) {
         printf("Libro con ID %d no encontrado.\n", id);
         return;
+    }
+    if(libros [indice].disponible == 0) {
+        printf("No se puede eliminar el libro con ID %d porque esta prestado.\n", id);
+        return;
+
     }
     for (int i = indice; i < *contador - 1; i++) {
         libros[i] = libros[i + 1];
